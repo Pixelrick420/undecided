@@ -1,6 +1,6 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { WelcomePage } from "./pages/welcomePage.jsx";
+import "./index.css";
 
 function App() {
   return (

@@ -8,8 +8,19 @@ body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
-
   -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient{
+  border-radius: 0.175rem; 
+  text-align: left;
+  border-color: #252525;
+  color: #ffffff;
+  padding: 0.75rem;
+  max-width: 28rem;
+  width: 100%;
+  margin-left: 20rem;
+  background: linear-gradient(to right, #18181b 95%, #3d3d41 5%);
 }
 
 h1,

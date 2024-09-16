@@ -11,6 +11,8 @@ export const SignUpPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
+  console.log(currentQuestion);
+
   const handleInputChange = (e) => setInputValue(e.target.value);
 
   const handleKeyPress = (e) => {
@@ -62,6 +64,10 @@ export const SignUpPage = () => {
           .fill(0)
           .map((_, index) => (
             <span
+              onClick={() => {
+                setCurrentQuestion(index);
+                setInputValue("");
+              }}
               key={index}
               className={`h-2 w-2 rounded-full ${
                 index === currentQuestion ? "bg-white" : "bg-gray-500"

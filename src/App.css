@@ -5,7 +5,17 @@ body {
   background-color: black;
   color: white;
 }
-
+.topbar {
+  width: 100%;
+  background-color: #252525;
+  height: 12px;
+  position: absolute;
+  top: 0px;
+  padding-bottom: 2px;
+}
+.topbar p {
+  text-align: left;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -14,13 +24,19 @@ body {
   height: 100vh;
   text-align: center;
 }
+
 h1 {
   font-size: 2.5rem;
+  margin-bottom: 0;
+  line-height: 1.1;
 }
-h1 > span {
+
+h1 span {
   opacity: 50%;
+  display: inline-block;
 }
-p {
+
+.container p {
   font-style: italic;
   font-size: 0.7rem;
 }

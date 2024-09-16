@@ -3,6 +3,9 @@ import "./App.css";
 function App() {
   return (
     <div className="container">
+      <div className="topbar">
+        <p>shameer</p>
+      </div>
       <h1>
         Safe, secure and quick registrations.
         <br />
@@ -11,7 +14,7 @@ function App() {
       <p>
         Take part in all the events you want to,
         <br />
-        without having to <span>worry</span> about hundreds of passes
+        without having to <span>worry</span> about hundreds of passes.
       </p>
       <div>
         <button className="login-button"></button>

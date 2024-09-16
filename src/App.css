@@ -1,5 +1,6 @@
 * {
   margin: 0px;
+  overflow: hidden;
 }
 body {
   background-color: black;
@@ -8,13 +9,16 @@ body {
 .topbar {
   width: 100%;
   background-color: #252525;
-  height: 12px;
+  height: 20px;
   position: absolute;
   top: 0px;
-  padding-bottom: 2px;
+  padding: 5px;
 }
 .topbar p {
   text-align: left;
+  margin-left: 20px;
+  font-size: 1rem;
+  font-family: "DM Serif Display", serif;
 }
 .container {
   display: flex;
@@ -26,7 +30,7 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 0;
   line-height: 1.1;
 }
@@ -36,7 +40,8 @@ h1 span {
   display: inline-block;
 }
 
-.container p {
+.bottomPara {
+  margin-top: 10px;
   font-style: italic;
   font-size: 0.7rem;
 }

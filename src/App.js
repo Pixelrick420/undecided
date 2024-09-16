@@ -11,7 +11,7 @@ function App() {
         <br />
         <span>now possible thanks to "hehe"</span>
       </h1>
-      <p>
+      <p className="bottomPara">
         Take part in all the events you want to,
         <br />
         without having to <span>worry</span> about hundreds of passes.

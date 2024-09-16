@@ -1,6 +1,4 @@
-import "./App.css";
-
-function App() {
+export const WelcomePage = () => {
   return (
     <div className="container">
       <div className="topbar">
@@ -22,6 +20,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};

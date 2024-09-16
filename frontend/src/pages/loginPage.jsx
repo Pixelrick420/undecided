@@ -11,7 +11,7 @@ export const LoginPage = () => {
       <h1 className="text-4xl leading-tight mb-4">
         Welcome Back
         <br />
-        <span className="opacity-50 inline-block">Sign in to continue</span>
+        <span className="opacity-50 inline-block">Login to continue</span>
       </h1>
       <div className="mt-4 w-full max-w-xs">
         <input
@@ -27,11 +27,19 @@ export const LoginPage = () => {
         <button
           style={{ backgroundColor: customGray }}
           className="w-full p-2 mb-2 text-2xl border-2 border-black rounded-md">
-          Sign In
+          Login
         </button>
         <p className="text-xs italic opacity-50">
           <a href="#" className="underline">
             Forgot Password?
+          </a>
+        </p>
+      </div>
+      <div className="mt-6">
+        <p className="text-sm">
+          Don't have an account?{" "}
+          <a href="/signup" className="underline">
+            Sign up
           </a>
         </p>
       </div>

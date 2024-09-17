@@ -11,21 +11,23 @@ export const SignUpPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
+  console.log(currentQuestion);
+
   const handleInputChange = (e) => setInputValue(e.target.value);
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && inputValue.trim() !== "") {
+    if (e.key === "Enter" && inputValue.trim() !== "") {
       handleNextQuestion();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === "ArrowRight") {
       handleNextQuestion();
-    } else if (e.key === 'ArrowLeft') {
+    } else if (e.key === "ArrowLeft") {
       handlePreviousQuestion();
     }
   };
 
   const handleNextQuestion = () => {
     if (inputValue.trim() !== "" || currentQuestion === 0) {
-      setInputValue(""); 
+      setInputValue("");
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       }

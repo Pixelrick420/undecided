@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const customGray = '#252525';
+
 export const LoginPage = () => {
   const questions = [
     "Enter your email",
@@ -38,36 +40,48 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-start h-screen text-left bg-black text-white px-6 md:px-20">
-      <div className='ml-80 w-4/12'>
-        <h1 className="text-3xl md:text-4xl mb-4">Let's get started.</h1>
-
-        <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
-          {questions[currentQuestion]}
-        </h2>
-
+    <div className="flex flex-col justify-center items-center h-screen text-center bg-black text-white">
+      <div
+        style={{ backgroundColor: customGray }}
+        className="w-full h-8 absolute top-0 p-1"
+      >
+        <p className="text-left ml-5 text-base font-serif">shameer</p>
+      </div>
+      <h1 className="text-4xl leading-tight mb-4">
+        Welcome Back
+        <br />
+        <span className="opacity-50 inline-block">Login to continue</span>
+      </h1>
+      <div className="mt-4 w-full max-w-xs">
         <input
           type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyPress}
-          className="w-full max-w-md p-3 text-white border-custom-gray rounded-md text-left input-gradient"
-          class='gradient'
-          autoFocus
+          placeholder="Email"
+          className="w-full mb-2 p-2 bg-gray-800 text-white border border-gray-700 rounded-md outline-none focus:bg-gray-700"
         />
-
-        <div className="flex justify-start mt-4 space-x-2">
-          {Array(4)
-            .fill(0)
-            .map((_, index) => (
-              <span
-                key={index}
-                className={`h-2 w-2 rounded-full ${
-                  index === currentQuestion ? "bg-white" : "bg-gray-500"
-                }`}
-              />
-            ))}
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full mb-4 p-2 bg-gray-800 text-white border border-gray-700 rounded-md outline-none focus:bg-gray-700"
+        />
+        <button
+          style={{ backgroundColor: customGray }}
+          className="w-full p-2 mb-2 text-2xl border-2 border-black rounded-md"
+        >
+          Login
+        </button>
+        <p className="text-xs italic opacity-50">
+          <a href="#" className="underline">
+            Forgot Password?
+          </a>
+        </p>
+      </div>
+      <div className="mt-6">
+        <p className="text-sm">
+          Don't have an account?{" "}
+          <a href="/signup" className="underline">
+            Sign up
+          </a>
+        </p>
       </div>
     </div>
   );

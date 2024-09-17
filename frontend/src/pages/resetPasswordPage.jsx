@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const ResetPasswordPage = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [resetComplete, setResetComplete] = useState(false);
 
+  // Reference for confirm password input
+  const confirmPasswordRef = useRef(null);
+
   const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
+
+  const handleKeyPressNewPassword = (e) => {
+    if (e.key === "Enter") {
+      // Move focus to the confirm password input
+      confirmPasswordRef.current.focus();
+    }
+  };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPressConfirmPassword = (e) => {
     if (e.key === "Enter") {
       handleSubmit();
     }
@@ -30,9 +40,9 @@ export const ResetPasswordPage = () => {
           <>
             <h1 className='text-center text-3xl bg-black text-white px-6 md:text-4xl mb-4'>Successfully reset!</h1>
             <h2 className="text-center text-sm md:text-base font-serif italic opacity-75 mb-6">
-              Please log-in with your new password.
+                Please log-in with your new password.
             </h2>
-          </>
+        </>
         ) : (
           <>
             <h1 className="text-3xl pb-2 md:text-4xl mb-4">Reset your password.</h1>
@@ -45,6 +55,7 @@ export const ResetPasswordPage = () => {
               type="password"
               value={newPassword}
               onChange={handleNewPasswordChange}
+              onKeyDown={handleKeyPressNewPassword}
               className="gradient mb-4"
             />
 
@@ -55,8 +66,9 @@ export const ResetPasswordPage = () => {
               type="password"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              onKeyDown={handleKeyPress}
+              onKeyDown={handleKeyPressConfirmPassword}
               className="gradient mb-4"
+              ref={confirmPasswordRef}
             />
           </>
         )}

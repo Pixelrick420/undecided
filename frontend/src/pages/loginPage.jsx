@@ -1,47 +1,73 @@
+import { useState } from "react";
+
 export const LoginPage = () => {
-  const customGray = "#252525";
+  const questions = [
+    "Enter your email",
+    "Enter password password",
+  ];
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e) => setInputValue(e.target.value);
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && inputValue.trim() !== "") {
+      handleNextQuestion();
+    } else if (e.key === 'ArrowRight') {
+      handleNextQuestion();
+    } else if (e.key === 'ArrowLeft') {
+      handlePreviousQuestion();
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (inputValue.trim() !== "" || currentQuestion === 0) {
+      setInputValue(""); 
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      }
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setInputValue("");
+    }
+  };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen text-center bg-black text-white">
-      <div
-        style={{ backgroundColor: customGray }}
-        className="w-full h-8 absolute top-0 p-1">
-        <p className="text-left ml-5 text-base font-serif">shameer</p>
-      </div>
-      <h1 className="text-4xl leading-tight mb-4">
-        Welcome Back
-        <br />
-        <span className="opacity-50 inline-block">Login to continue</span>
-      </h1>
-      <div className="mt-4 w-full max-w-xs">
+    <div className="flex flex-col justify-center items-start h-screen text-left bg-black text-white px-6 md:px-20">
+      <div className='ml-80 w-4/12'>
+        <h1 className="text-3xl md:text-4xl mb-4">Let's get started.</h1>
+
+        <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+          {questions[currentQuestion]}
+        </h2>
+
         <input
           type="text"
-          placeholder="Email"
-          className="w-full mb-2 p-2 bg-gray-800 text-white border border-gray-700 rounded-md"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          className="w-full max-w-md p-3 text-white border-custom-gray rounded-md text-left input-gradient"
+          class='gradient'
+          autoFocus
         />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 p-2 bg-gray-800 text-white border border-gray-700 rounded-md"
-        />
-        <button
-          style={{ backgroundColor: customGray }}
-          className="w-full p-2 mb-2 text-2xl border-2 border-black rounded-md">
-          Login
-        </button>
-        <p className="text-xs italic opacity-50">
-          <a href="#" className="underline">
-            Forgot Password?
-          </a>
-        </p>
-      </div>
-      <div className="mt-6">
-        <p className="text-sm">
-          Don't have an account?{" "}
-          <a href="/signup" className="underline">
-            Sign up
-          </a>
-        </p>
+
+        <div className="flex justify-start mt-4 space-x-2">
+          {Array(4)
+            .fill(0)
+            .map((_, index) => (
+              <span
+                key={index}
+                className={`h-2 w-2 rounded-full ${
+                  index === currentQuestion ? "bg-white" : "bg-gray-500"
+                }`}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

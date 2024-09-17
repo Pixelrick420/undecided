@@ -49,7 +49,7 @@ export const SignUpPage = () => {
         <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
           {questions[currentQuestion]}
         </h2>
-
+        
         <input
           type="text"
           value={inputValue}
@@ -59,6 +59,7 @@ export const SignUpPage = () => {
           autoFocus
         />
 
+        <div>
         <div className="flex justify-start mt-4 space-x-2">
           {Array(4)
             .fill(0)
@@ -70,6 +71,7 @@ export const SignUpPage = () => {
                 }`}
               />
             ))}
+        </div>
         </div>
       </div>
     </div>

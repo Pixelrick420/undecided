@@ -5,14 +5,12 @@ export const ResetPasswordPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [resetComplete, setResetComplete] = useState(false);
 
-  // Reference for confirm password input
   const confirmPasswordRef = useRef(null);
 
   const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
 
   const handleKeyPressNewPassword = (e) => {
     if (e.key === "Enter") {
-      // Move focus to the confirm password input
       confirmPasswordRef.current.focus();
     }
   };

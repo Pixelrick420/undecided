@@ -1,0 +1,9 @@
+.tick {
+  position: absolute;
+  height: 20px;
+  width: 10px;
+  display: inline-block;
+  transform: rotate(45deg);
+  border-bottom: 5px solid #000000;
+  border-right: 5px solid #000000;
+}

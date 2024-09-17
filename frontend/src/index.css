@@ -6,13 +6,15 @@
 @tailwind utilities;
 body {
   margin: 0;
+  background-color: black;
+  color: white;
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.gradient{
-  border-radius: 0.175rem; 
+.gradient {
+  border-radius: 0.175rem;
   text-align: left;
   border-color: #252525;
   color: #ffffff;

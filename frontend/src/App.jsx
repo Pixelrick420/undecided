@@ -7,6 +7,7 @@ import { ResetPasswordPage } from "./pages/resetPasswordPage.jsx";
 import "./index.css";
 
 import { Link } from "react-router-dom";
+import { HostPage } from './pages/host.jsx';
 
 function App() {
   const Text = "";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/animation" element={<AnimationPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/host" element={<HostPage />} />
       </Routes>
       <Link to={`/animation?text=${encodeURIComponent(Text)}`}></Link>
     </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export const SignUpPage = () => {
+  var errorraised = false
   const questions = [
     "What's your name?",
     "Enter your email",
@@ -55,7 +56,7 @@ export const SignUpPage = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
-          class="gradient"
+          class={(!errorraised)? "gradient" : "errorgradient"}
           autoFocus
         />
 

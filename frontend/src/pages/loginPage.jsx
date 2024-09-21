@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
+  var errorraised = false
   const steps = [
     "Enter your email",
     "Enter your password",
@@ -51,13 +52,13 @@ export const LoginPage = () => {
             </h2>
 
             <input
-              type={currentStep === 1 ? "password" : "text"}
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyPress}
-              className="gradient"
-              autoFocus
-            />
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          class={(!errorraised)? "gradient" : "errorgradient"}
+          autoFocus
+        />
           </>
         ) : (
           <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">

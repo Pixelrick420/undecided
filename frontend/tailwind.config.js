@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        customLightGray: '#3d3d41', 
+      },
       keyframes: {
         'loader-expand': {
           '0%': { opacity: '1', transform: 'scale(0.2)' },

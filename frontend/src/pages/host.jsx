@@ -56,9 +56,9 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-      <h1 className="text-4xl mb-4">Let’s set up your event.</h1>
-      <p className="text-lg italic opacity-75 mb-6">
+    <div className="flex flex-col w-5/12 items-start justify-center min-h-screen bg-black text-white">
+      <h1 className="text-4xl text-left mb-4">Let’s set up your Event.</h1>
+      <p className="text-lg opacity-75 font-serif mb-6">
         Set up your registration form.
       </p>
 
@@ -67,7 +67,13 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           <div
             key={index}
             className={`p-4 rounded-md cursor-pointer ${
-              element.type === "text" ? "bg-blue-600" : "bg-green-600"
+              element.type === "text"
+                ? "bg-blue-600"
+                : element.type === "checkbox"
+                ? "bg-green-600"
+                : element.type === "payment"
+                ? "bg-yellow-500"
+                : "bg-pink-600"
             }`}
             onClick={() => handleEditElement(index)}
           >
@@ -92,7 +98,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           />
 
           <select
-            className="p-2 bg-customLightGray text-white rounded-md w-1/12"
+            className="p-2 bg-customLightGray text-white h-[55px] rounded-md w-1/12"
             value={selectedElement}
             onChange={handleSelectChange}
           >
@@ -138,11 +144,11 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
 
 export const HostPage = () => {
   var errorraised = false; // set this to true if any error like password does not match etc
-
+  const EVENTID = "HEHEHEHEHHE";
   const questions = [
     "What's your event called?",
     "Set up your registration form",
-    "This is your event code, make sure you share it with all your participants!",
+    "Here is your event code, please share it with all your participants!",
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -191,29 +197,18 @@ export const HostPage = () => {
             {questions[currentQuestion]}
           </h2>
 
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyPress}
-            className={!errorraised ? "gradient" : "errorgradient"}
-            autoFocus
-          />
-
-          <div>
-            <div className="flex justify-start mt-4 space-x-2">
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
-                  <span
-                    key={index}
-                    className={`h-2 w-2 rounded-full ${
-                      index === currentQuestion ? "bg-white" : "bg-gray-500"
-                    }`}
-                  />
-                ))}
-            </div>
-          </div>
+          {currentQuestion !== 2 ? (
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyPress}
+              className={!errorraised ? "gradient" : "errorgradient"}
+              autoFocus
+            />
+          ) : (
+            <div class="gradient">{EVENTID}</div>
+          )}
         </div>
       ) : (
         <RegistrationForm

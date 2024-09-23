@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import confetti from "canvas-confetti";
 import "./tick.css";
 
-export const AnimationPage = () => {
+const AnimationComponent = ({ finalText }) => {
   const [animationFinished, setAnimationFinished] = useState(false);
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const finalText = queryParams.get("text") || "You're ready to go";
 
   const fireConfetti = () => {
     confetti({
@@ -42,3 +38,5 @@ export const AnimationPage = () => {
     </div>
   );
 };
+
+export default AnimationComponent;

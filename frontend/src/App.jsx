@@ -3,6 +3,7 @@ import { WelcomePage } from "./pages/welcomePage.jsx";
 import { LoginPage } from "./pages/loginPage.jsx";
 import { SignUpPage } from "./pages/signUpPage.jsx";
 import { ResetPasswordPage } from "./pages/resetPasswordPage.jsx";
+import { RegisterPage } from "./pages/registrationPage.jsx";
 import "./index.css";
 
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/host" element={<HostPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </div>
   );

@@ -11,10 +11,10 @@ export const AnimationPage = () => {
 
   const fireConfetti = () => {
     confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#000000", "#FFFFFF"],
+      particleCount: 10,
+      spread: 100,
+      origin: { y: 0.5 },
+      colors: ["#FFFFFF"],
     });
   };
 

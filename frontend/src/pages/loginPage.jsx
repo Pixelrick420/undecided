@@ -106,7 +106,8 @@ export const LoginPage = () => {
     <div
       className={`flex flex-row w-full justify-center items-center h-screen ${
         isLoggedIn ? "text-center" : "text-left"
-      } bg-black text-white px-6 md:px-20`}>
+      } bg-black text-white px-6 md:px-20`}
+    >
       <div className="w-5/12 flex flex-col">
         <h1 className="text-3xl md:text-4xl mb-4">
           {isLoggedIn ? "Logged In!" : "Welcome back!"}
@@ -150,7 +151,8 @@ export const LoginPage = () => {
                   </span>
                   <Link
                     to="/reset-password"
-                    className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2">
+                    className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2"
+                  >
                     Reset it.
                   </Link>
                 </div>

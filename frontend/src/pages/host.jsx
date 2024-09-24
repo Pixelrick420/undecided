@@ -145,17 +145,16 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
 const generateUniqueID = () => {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let result = "";
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return `${result}`;
 };
 
-var uniqueid = generateUniqueID();
+const EVENTID = generateUniqueID() + "-" + generateUniqueID();
 
 export const HostPage = () => {
   var errorraised = false; // set this to true if any error like password does not match etc
-  const EVENTID = { uniqueid };
   const questions = [
     "What's your event called?",
     "Set up your registration form",

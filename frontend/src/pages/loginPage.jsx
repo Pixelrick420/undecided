@@ -106,20 +106,19 @@ export const LoginPage = () => {
     <div
       className={`flex flex-row w-full justify-center items-center h-screen ${
         isLoggedIn ? "text-center" : "text-left"
-      } bg-black text-white px-6 md:px-20`}
-    >
+      } bg-black text-white px-6 md:px-20`}>
       <div className="w-5/12 flex flex-col">
         <h1 className="text-3xl md:text-4xl mb-4">
           {isLoggedIn ? "Logged In!" : "Welcome back!"}
         </h1>
 
         {isLoggedIn ? (
-          <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+          <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
             Let's get back into the action.
           </h2>
         ) : (
           <>
-            <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               {steps[currentStep]}
             </h2>
             <input
@@ -146,13 +145,12 @@ export const LoginPage = () => {
               </div>
               {currentStep === 1 && (
                 <div>
-                  <span className="text-xs font-serif italic md:text-sm text-gray-400 mt-2">
+                  <span className="text-xs font-sans italic md:text-sm text-gray-400 mt-2">
                     Forgot your password?
                   </span>
                   <Link
                     to="/reset-password"
-                    className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2"
-                  >
+                    className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2 font-sans">
                     Reset it.
                   </Link>
                 </div>

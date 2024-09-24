@@ -61,7 +61,7 @@ export const RegisterPage = () => {
 
         {currentStep === 0 ? (
           <>
-            <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               {steps[currentStep]}
             </h2>
             <input
@@ -75,10 +75,10 @@ export const RegisterPage = () => {
           </>
         ) : (
           <>
-            <h2 className="text-[3vh] md:text-base font-serif italic opacity-75 mb-6">
+            <h2 className="text-[3vh] md:text-base font-sans italic opacity-75 mb-6">
               {steps[currentStep]}
             </h2>
-            <div className="gradient flex flex-row items-center justify-center items-center md:text-4xl mb-4">
+            <div className="gradient flex flex-row  justify-center items-center md:text-4xl mb-4">
               {"7DHD-" + generatedID}
             </div>
           </>

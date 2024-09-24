@@ -58,7 +58,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
   return (
     <div className="flex flex-col w-5/12 items-start justify-center min-h-screen bg-black text-white">
       <h1 className="text-4xl text-left mb-4">Let’s set up your Event.</h1>
-      <p className="text-lg opacity-75 font-serif mb-6">
+      <p className="text-lg opacity-75 font-sans mb-6">
         Set up your registration form.
       </p>
 
@@ -75,8 +75,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
                 ? "bg-yellow-500"
                 : "bg-pink-600"
             }`}
-            onClick={() => handleEditElement(index)}
-          >
+            onClick={() => handleEditElement(index)}>
             <p>{element.value}</p>
             {element.type === "checkbox" && element.options && (
               <div className="ml-4">
@@ -100,8 +99,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           <select
             className="p-2 bg-customLightGray text-white h-[55px] rounded-md w-1/12"
             value={selectedElement}
-            onChange={handleSelectChange}
-          >
+            onChange={handleSelectChange}>
             <option value="" disabled></option>
             {elementOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -127,14 +125,12 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
       <div className="mt-6 absolute bottom-6 right-6 flex space-x-4">
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleAddElement}
-        >
+          onClick={handleAddElement}>
           Add Element
         </button>
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleCreateEvent}
-        >
+          onClick={handleCreateEvent}>
           Create Event
         </button>
       </div>
@@ -204,7 +200,7 @@ export const HostPage = () => {
               : "Generating your Unique ID"}
           </h1>
 
-          <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+          <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
             {questions[currentQuestion]}
           </h2>
 

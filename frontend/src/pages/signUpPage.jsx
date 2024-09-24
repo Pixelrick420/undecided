@@ -120,7 +120,7 @@ export const SignUpPage = () => {
       ) : (
         <div className="w-5/12 flex flex-col">
           <h1 className="text-3xl md:text-4xl mb-4">Let's get started.</h1>
-          <h2 className="text-sm md:text-base font-serif italic opacity-75 mb-6">
+          <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
             {questions[currentQuestion]}
           </h2>
           <input

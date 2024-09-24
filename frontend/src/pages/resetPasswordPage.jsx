@@ -45,7 +45,7 @@ export const ResetPasswordPage = () => {
           <>
             <h1 className="text-3xl pb-2 md:text-4xl mb-4">Reset your password.</h1>
 
-            <h2 className="text-sm pb-0 md:text-base font-serif italic opacity-75 mb-6">
+            <h2 className="text-sm pb-0 md:text-base font-sans italic opacity-75 mb-6">
               Enter your new password.
             </h2>
 
@@ -57,7 +57,7 @@ export const ResetPasswordPage = () => {
               className="gradient mb-4"
             />
 
-            <h2 className="text-sm pb-0 md:text-base font-serif italic opacity-75 mb-6">
+            <h2 className="text-sm pb-0 md:text-base font-sans italic opacity-75 mb-6">
               Confirm your new password.
             </h2>
             <input

@@ -9,8 +9,7 @@ export const WelcomePage = () => {
     <div className="flex flex-col justify-center items-center h-screen text-center bg-black text-white">
       <div
         style={{ backgroundColor: customGray }}
-        className="w-full h-8 absolute top-0 p-1"
-      >
+        className="w-full h-8 absolute top-0 p-1">
         <p className="text-left ml-5 text-base font-serif">shameer</p>
       </div>
       <h1 className="text-4xl leading-tight mb-0">
@@ -32,16 +31,14 @@ export const WelcomePage = () => {
             navigate("host");
           }}
           style={{ backgroundColor: customGray }}
-          className="mx-4 text-2xl h-10 w-36 border-2 border-black rounded-md"
-        >
+          className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
           Host
         </button>
         <button
           onClick={() => {
             navigate("/register");
           }}
-          className="mx-4 text-2xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md"
-        >
+          className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif">
           Join
         </button>
       </div>

@@ -46,6 +46,18 @@ export const WelcomePage = () => {
     return <HostPage />;
   }
 
+  const buttonStyle = {
+    transition: "all 0.3s ease",
+    color: "white",
+    backgroundColor: customGray,
+  };
+
+  const hoverStyle = {
+    backgroundColor: "white",
+    color: customGray,
+    borderColor: customGray,
+  };
+
   if (!authChecked) {
     return (
       <div className="flex justify-center items-center h-screen text-white">
@@ -69,22 +81,45 @@ export const WelcomePage = () => {
         without having to <span className="underline">worry</span> about
         hundreds of passes.
       </p>
+      <div className="mt-8">
+        {isLoggedIn ? (
 
       <div className="mt-4">
         {!isLoggedIn ? (
           <>
             <button
+              onMouseEnter={(e) => {
+                Object.assign(e.target.style, hoverStyle);
+              }}
+              onMouseLeave={(e) => {
+                Object.assign(e.target.style, buttonStyle);
+              }}
               onClick={() => {
                 setViewLogin(true);
               }}
+              style={buttonStyle}
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
               style={{ backgroundColor: customGray }}
               className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Login
             </button>
             <button
+              onMouseEnter={(e) => {
+                Object.assign(e.target.style, hoverStyle);
+              }}
+              onMouseLeave={(e) => {
+                Object.assign(e.target.style, {
+                  backgroundColor: "black",
+                  color: "white",
+                  borderColor: customGray,
+                });
+              }}
               onClick={() => {
                 setViewSignup(true);
               }}
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
+            >
               className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif">
               SignUp
             </button>
@@ -92,17 +127,38 @@ export const WelcomePage = () => {
         ) : (
           <>
             <button
+              onMouseEnter={(e) => {
+                Object.assign(e.target.style, hoverStyle);
+              }}
+              onMouseLeave={(e) => {
+                Object.assign(e.target.style, buttonStyle);
+              }}
               onClick={() => {
                 setViewHost(true);
               }}
+              style={buttonStyle}
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
               style={{ backgroundColor: customGray }}
               className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Host
             </button>
             <button
+              onMouseEnter={(e) => {
+                Object.assign(e.target.style, hoverStyle);
+              }}
+              onMouseLeave={(e) => {
+                Object.assign(e.target.style, {
+                  backgroundColor: "black",
+                  color: "white",
+                  borderColor: customGray,
+                });
+              }}
               onClick={() => {
                 setViewJoin(true);
               }}
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
+            >
               className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif">
               Join
             </button>

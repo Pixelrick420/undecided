@@ -58,7 +58,7 @@ export const WelcomePage = () => {
         hundreds of passes.
       </p>
       <div className="mt-8">
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <>
             <button
               onMouseEnter={(e) => {

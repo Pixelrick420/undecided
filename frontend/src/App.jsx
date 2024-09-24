@@ -15,8 +15,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/host" element={<HostPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -146,7 +146,7 @@ export const LoginPage = () => {
                   ))}
               </div>
               {currentStep === 1 && (
-                <div>
+                <div className="space-x-1">
                   <span className="text-xs font-sans italic md:text-sm text-gray-400 mt-2">
                     Forgot your password?
                   </span>

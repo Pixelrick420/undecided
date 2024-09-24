@@ -51,7 +51,7 @@ export const WelcomePage = () => {
         </button>
         <button
           onClick={() => {
-            navigate("/register");
+            setViewSignup(true);
           }}
           className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif"
         >

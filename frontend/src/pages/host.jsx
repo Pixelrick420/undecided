@@ -75,7 +75,8 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
                 ? "bg-yellow-500"
                 : "bg-pink-600"
             }`}
-            onClick={() => handleEditElement(index)}>
+            onClick={() => handleEditElement(index)}
+          >
             <p>{element.value}</p>
             {element.type === "checkbox" && element.options && (
               <div className="ml-4">
@@ -99,7 +100,8 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           <select
             className="p-2 bg-customLightGray text-white h-[55px] rounded-md w-1/12"
             value={selectedElement}
-            onChange={handleSelectChange}>
+            onChange={handleSelectChange}
+          >
             <option value="" disabled></option>
             {elementOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -125,12 +127,14 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
       <div className="mt-6 absolute bottom-6 right-6 flex space-x-4">
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleAddElement}>
+          onClick={handleAddElement}
+        >
           Add Element
         </button>
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleCreateEvent}>
+          onClick={handleCreateEvent}
+        >
           Create Event
         </button>
       </div>
@@ -193,7 +197,7 @@ export const HostPage = () => {
   return (
     <div className="flex flex-row w-full justify-center items-center h-screen text-left bg-black text-white px-6 md:px-20">
       {currentQuestion !== 1 ? (
-        <div className="w-5/12 flex flex-col">
+        <div className="w-6/12 flex flex-col">
           <h1 className="text-3xl md:text-4xl mb-4">
             {currentQuestion !== 2
               ? "Let's set up your Event."

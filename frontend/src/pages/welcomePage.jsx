@@ -81,8 +81,6 @@ export const WelcomePage = () => {
         without having to <span className="underline">worry</span> about
         hundreds of passes.
       </p>
-      <div className="mt-8">
-        {isLoggedIn ? (
 
       <div className="mt-4">
         {!isLoggedIn ? (
@@ -98,9 +96,6 @@ export const WelcomePage = () => {
                 setViewLogin(true);
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
-            >
-              style={{ backgroundColor: customGray }}
               className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Login
             </button>
@@ -118,9 +113,7 @@ export const WelcomePage = () => {
               onClick={() => {
                 setViewSignup(true);
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
-            >
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
               SignUp
             </button>
           </>
@@ -137,9 +130,6 @@ export const WelcomePage = () => {
                 setViewHost(true);
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
-            >
-              style={{ backgroundColor: customGray }}
               className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Host
             </button>
@@ -157,9 +147,7 @@ export const WelcomePage = () => {
               onClick={() => {
                 setViewJoin(true);
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
-            >
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
               Join
             </button>
           </>

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import AnimationComponent from "./AnimationComponent";
 
 export const LoginPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -12,6 +13,7 @@ export const LoginPage = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false); // New state
 
   const steps = ["Enter your email", "Enter your password"];
 
@@ -111,13 +113,31 @@ export const LoginPage = () => {
     >
       <div className="w-5/12 flex flex-col">
         <h1 className="text-3xl md:text-4xl mb-4">
-          {isLoggedIn ? "Logged In!" : "Welcome back!"}
+          {isLoggedIn ? (
+            animationComplete ? (
+              "Logged In!"
+            ) : (
+              <AnimationComponent finalText="Logged In!" />
+            )
+          ) : (
+            "Welcome back!"
+          )}
         </h1>
 
         {isLoggedIn ? (
-          <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
-            Let's get back into the action.
-          </h2>
+          <>
+            {!animationComplete && (
+              <AnimationComponent
+                finalText="Logged In!"
+                onAnimationComplete={() => setAnimationComplete(true)}
+              />
+            )}
+            {animationComplete && (
+              <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
+                Let's get back into the action.
+              </h2>
+            )}
+          </>
         ) : (
           <>
             <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">

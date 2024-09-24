@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      darkMode: "class",
+      theme: {
+        extend: {},
+      },
       colors: {
         customLightGray: "#3d3d41",
         customGrey: "#252525",

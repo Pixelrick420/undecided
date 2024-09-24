@@ -78,13 +78,13 @@ export const RegisterPage = () => {
             <h2 className="text-[3vh] md:text-base font-sans italic opacity-75 mb-6">
               {steps[currentStep]}
             </h2>
-            <div className="gradient flex flex-row  justify-center items-center md:text-4xl mb-4">
+            <div className="gradient flex flex-row  justify-center items-center md:text-base mb-6">
               {"7DHD-" + generatedID}
             </div>
           </>
         )}
 
-        <div className="flex flex-row justify-center items-center w-full">
+        <div className="flex flex-row justify-start items-center w-full">
           <div className="flex justify-start mt-4 space-x-2">
             {Array(steps.length)
               .fill(0)

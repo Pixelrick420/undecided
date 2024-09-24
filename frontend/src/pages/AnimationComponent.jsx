@@ -26,6 +26,12 @@ const AnimationComponent = ({ finalText }) => {
     <div className="flex justify-center items-center w-full h-screen">
       <header className="header"></header>
       <main className="flex flex-wrap justify-center items-center gap-8 text-4xl font-sans">
+        <div class="flex space-x-2 justify-center items-center bg-white h-screen dark:invert">
+          <span class="sr-only">Loading...</span>
+          <div class="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+          <div class="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+          <div class="h-8 w-8 bg-black rounded-full animate-bounce"></div>
+        </div>
         {!animationFinished && (
           <div className="relative flex justify-center items-center w-12 h-12 text-white">
             <div className="absolute w-12 h-12 rounded-full bg-white animate-loader-expand"></div>

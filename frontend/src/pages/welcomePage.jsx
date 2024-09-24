@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginPage } from "./loginPage";
 import { SignUpPage } from "./signUpPage";
+import { RegisterPage } from "./registrationPage";
+import { HostPage } from "./host";
 
 export const WelcomePage = () => {
   const navigate = useNavigate();
@@ -9,6 +11,8 @@ export const WelcomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [viewLogin, setViewLogin] = useState(false);
   const [viewSignup, setViewSignup] = useState(false);
+  const [viewJoin, setViewJoin] = useState(false);
+  const [viewHost, setViewHost] = useState(false);
 
   if (viewLogin) {
     return <LoginPage />;
@@ -16,6 +20,14 @@ export const WelcomePage = () => {
 
   if (viewSignup) {
     return <SignUpPage />;
+  }
+
+  if (viewJoin) {
+    return <RegisterPage />;
+  }
+
+  if (viewHost) {
+    return <HostPage />;
   }
 
   return (
@@ -40,23 +52,47 @@ export const WelcomePage = () => {
         hundreds of passes.
       </p>
       <div className="mt-4">
-        <button
-          onClick={() => {
-            setViewLogin(true);
-          }}
-          style={{ backgroundColor: customGray }}
-          className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
-        >
-          Login
-        </button>
-        <button
-          onClick={() => {
-            setViewSignup(true);
-          }}
-          className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif"
-        >
-          SignUp
-        </button>
+        {isLoggedIn ? (
+          <>
+            <button
+              onClick={() => {
+                setViewLogin(true);
+              }}
+              style={{ backgroundColor: customGray }}
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => {
+                setViewSignup(true);
+              }}
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif"
+            >
+              SignUp
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setViewHost(true);
+              }}
+              style={{ backgroundColor: customGray }}
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
+              Host
+            </button>
+            <button
+              onClick={() => {
+                setViewJoin(true);
+              }}
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 border-custom-gray rounded-md font-serif"
+            >
+              Join
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./tick.css";
 
-const AnimationComponent = ({ finalText, redirect }) => {
+const AnimationComponent = ({ finalHeading, finalText, redirect }) => {
   const [firstAnimationCount, setFirstAnimationCount] = useState(0);
   const [animation1Finished, setAnimation1Finished] = useState(false);
   const [animation2Finished, setAnimation2Finished] = useState(false);
@@ -30,12 +30,11 @@ const AnimationComponent = ({ finalText, redirect }) => {
 
   useEffect(() => {
     if (animation2Finished) {
-      // Wait for 1 second before redirecting
       const redirectTimeout = setTimeout(() => {
-        navigate(redirect); // Redirect to the specified route
+        navigate(redirect);
       }, 1000);
 
-      return () => clearTimeout(redirectTimeout); // Cleanup the timeout
+      return () => clearTimeout(redirectTimeout);
     }
   }, [animation2Finished, navigate, redirect]);
 
@@ -60,7 +59,15 @@ const AnimationComponent = ({ finalText, redirect }) => {
           </div>
         )}
 
-        {animation2Finished && <h1>{finalText}</h1>}
+        {animation2Finished && (
+          <div className="w-5/9 flex flex-col">
+            <h1 className="text-3xl md:text-4xl mb-4">{finalHeading}</h1>
+
+            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
+              {finalText}
+            </h2>
+          </div>
+        )}
       </main>
     </div>
   );

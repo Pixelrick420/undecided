@@ -58,7 +58,7 @@ const ViewPage = () => {
           </div>
         ))}
 
-        <div className="flex justify-start mt-4 space-x-2">
+        <div className="flex justify-start ml-2 mt-4 space-x-2">
           {Array(totalPages)
             .fill(0)
             .map((_, index) => (

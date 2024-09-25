@@ -5,6 +5,7 @@ import { SignUpPage } from "./signUpPage";
 import { RegisterPage } from "./registrationPage";
 import { HostPage } from "./host";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import AnimationComponent from "./AnimationComponent";
 
 export const WelcomePage = () => {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export const WelcomePage = () => {
   if (!authChecked) {
     return (
       <div className="flex justify-center items-center h-screen text-white">
-        <p>Loading...</p>
+        <AnimationComponent finalText="" redirect={"/"} />
       </div>
     );
   }
@@ -95,7 +96,8 @@ export const WelcomePage = () => {
                 setViewLogin(true);
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
               Login
             </button>
             <button
@@ -112,7 +114,8 @@ export const WelcomePage = () => {
               onClick={() => {
                 setViewSignup(true);
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
+            >
               SignUp
             </button>
           </>
@@ -129,7 +132,8 @@ export const WelcomePage = () => {
                 setViewHost(true);
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
+            >
               Host
             </button>
             <button
@@ -146,7 +150,8 @@ export const WelcomePage = () => {
               onClick={() => {
                 setViewJoin(true);
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
+            >
               Join
             </button>
           </>

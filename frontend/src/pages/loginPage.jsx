@@ -111,11 +111,11 @@ export const LoginPage = () => {
     <div
       className={`flex flex-row w-full justify-center items-center h-screen ${
         isLoggedIn ? "text-center" : "text-left"
-      } bg-black text-white px-6 md:px-20`}
-    >
+      } bg-black text-white px-6 md:px-20`}>
       {showAnimation ? (
         <AnimationComponent
-          finalText="Logged In! Let's get back into the action."
+          finalHeading="Logged In!"
+          finalText="Lets get back into action"
           redirect={"/home"}
         />
       ) : (
@@ -162,8 +162,7 @@ export const LoginPage = () => {
                     </span>
                     <Link
                       to="/reset-password"
-                      className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2 font-sans"
-                    >
+                      className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2 font-sans">
                       Reset it.
                     </Link>
                   </div>

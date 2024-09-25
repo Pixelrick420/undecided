@@ -8,15 +8,15 @@ const ViewPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white flex justify-center items-center">
-      <div className="w-full max-w-xl">
+    <div className="mt-10 min-h-screen w-full bg-black text-white flex flex-col items-center">
+      <div className="w-full px-6">
         <h2 className="text-2xl font-bold mb-4">My Events</h2>
         <p className="mb-6">Here's a list of events you've registered for.</p>
 
         {events.map((event, index) => (
           <div
             key={index}
-            className="flex justify-between items-center border border-gray-700 rounded-lg p-4 mb-4"
+            className="flex justify-between items-center border border-gray-400 rounded-2xl p-8 mt-4 mb-4 w-full"
           >
             <span className="text-lg">{event.name}</span>
             <div className="flex items-center">

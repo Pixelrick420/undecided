@@ -9,6 +9,9 @@ export const HomePage = () => {
   const handleHostClick = () => {
     navigate("/host");
   };
+  const handleviewClick = () => {
+    navigate("/view");
+  };
   var name = "hambada thayoli";
   return (
     <div className="flex items-center justify-center h-screen bg-black text-white">
@@ -33,7 +36,7 @@ export const HomePage = () => {
             <div className="text-purple-400 mr-2">•</div>
           </button>
           <button className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
-            <div>View</div>
+            <div onClick={handleViewClick}>View</div>
             <div className="text-orange-400 mr-2">•</div>
           </button>
         </div>

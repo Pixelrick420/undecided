@@ -15,8 +15,7 @@ const ViewPage = () => {
 
   const eventsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
-  const [hoverIndex, setHoverIndex] = useState(null); // State to track hovered event
-
+  const [hoverIndex, setHoverIndex] = useState(null);
   const totalPages = Math.ceil(events.length / eventsPerPage);
 
   useEffect(() => {
@@ -50,12 +49,12 @@ const ViewPage = () => {
           <div
             key={index}
             className="flex justify-between items-center border border-gray-300 rounded-2xl p-4 mb-4 font-sans"
-            onMouseEnter={() => setHoverIndex(index)} // Set hover index on hover
-            onMouseLeave={() => setHoverIndex(null)} // Reset hover index on leave
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
           >
             <span className="text-sm font-sans">{event.name}</span>
             <div className="flex items-center">
-              {hoverIndex === index && ( // Conditionally render the status on hover
+              {hoverIndex === index && (
                 <span className="mr-2 text-sm">{event.status}</span>
               )}
               <span className={`w-3 h-3 rounded-full ${event.color}`}></span>

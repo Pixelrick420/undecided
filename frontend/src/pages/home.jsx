@@ -9,7 +9,7 @@ export const HomePage = () => {
   const handleHostClick = () => {
     navigate("/host");
   };
-  const handleviewClick = () => {
+  const handleViewClick = () => {
     navigate("/view");
   };
   var name = "hambada thayoli";

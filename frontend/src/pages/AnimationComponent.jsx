@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./tick.css";
 
-const AnimationComponent = ({ finalText }) => {
+const AnimationComponent = ({ finalText, redirect }) => {
   const [firstAnimationCount, setFirstAnimationCount] = useState(0);
   const [animation1Finished, setAnimation1Finished] = useState(false);
   const [animation2Finished, setAnimation2Finished] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (firstAnimationCount < 3) {
@@ -25,6 +27,17 @@ const AnimationComponent = ({ finalText }) => {
       }, 1000);
     }
   }, [animation1Finished]);
+
+  useEffect(() => {
+    if (animation2Finished) {
+      // Wait for 1 second before redirecting
+      const redirectTimeout = setTimeout(() => {
+        navigate(redirect); // Redirect to the specified route
+      }, 1000);
+
+      return () => clearTimeout(redirectTimeout); // Cleanup the timeout
+    }
+  }, [animation2Finished, navigate, redirect]);
 
   return (
     <div className="flex justify-center items-center w-full h-screen">

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import AnimationComponent from "./AnimationComponent";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -12,6 +14,7 @@ export const LoginPage = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(false);
 
   const steps = ["Enter your email", "Enter your password"];
 
@@ -71,6 +74,7 @@ export const LoginPage = () => {
         { merge: true }
       );
 
+      setShowAnimation(true);
       setIsLoggedIn(true);
       resetForm();
     } catch (error) {
@@ -109,59 +113,66 @@ export const LoginPage = () => {
         isLoggedIn ? "text-center" : "text-left"
       } bg-black text-white px-6 md:px-20`}
     >
-      <div className="w-5/12 flex flex-col">
-        <h1 className="text-3xl md:text-4xl mb-4">
-          {isLoggedIn ? "Logged In!" : "Welcome back!"}
-        </h1>
+      {showAnimation ? (
+        <AnimationComponent
+          finalText="Logged In! Let's get back into the action."
+          redirect={"/home"}
+        />
+      ) : (
+        <div className="w-5/12 flex flex-col">
+          <h1 className="text-3xl md:text-4xl mb-4">
+            {isLoggedIn ? "Logged In!" : "Welcome back!"}
+          </h1>
 
-        {isLoggedIn ? (
-          <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
-            Let's get back into the action.
-          </h2>
-        ) : (
-          <>
+          {isLoggedIn ? (
             <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
-              {steps[currentStep]}
+              Let's get back into the action.
             </h2>
-            <input
-              type={currentStep === 1 ? "password" : "text"}
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyPress}
-              className={`${error ? "errorgradient" : "gradient"} mb-2`}
-              autoFocus
-            />
-            {error && <p className="text-red-500">{error}</p>}
-            <div className="flex flex-row justify-between">
-              <div className="flex justify-start mt-4 space-x-2">
-                {Array(steps.length)
-                  .fill(0)
-                  .map((_, index) => (
-                    <span
-                      key={index}
-                      className={`h-2 w-2 rounded-full ${
-                        index === currentStep ? "bg-white" : "bg-gray-500"
-                      }`}
-                    />
-                  ))}
-              </div>
-              {currentStep === 1 && (
-                <div className="space-x-1">
-                  <span className="text-xs font-sans italic md:text-sm text-gray-400 mt-2">
-                    Forgot your password?
-                  </span>
-                  <Link
-                    to="/reset-password"
-                    className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2 font-sans"
-                  >
-                    Reset it.
-                  </Link>
+          ) : (
+            <>
+              <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
+                {steps[currentStep]}
+              </h2>
+              <input
+                type={currentStep === 1 ? "password" : "text"}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyPress}
+                className={`${error ? "errorgradient" : "gradient"} mb-2`}
+                autoFocus
+              />
+              {error && <p className="text-red-500">{error}</p>}
+              <div className="flex flex-row justify-between">
+                <div className="flex justify-start mt-4 space-x-2">
+                  {Array(steps.length)
+                    .fill(0)
+                    .map((_, index) => (
+                      <span
+                        key={index}
+                        className={`h-2 w-2 rounded-full ${
+                          index === currentStep ? "bg-white" : "bg-gray-500"
+                        }`}
+                      />
+                    ))}
                 </div>
-              )}
-            </div>
-          </>
-        )}
-      </div>
+                {currentStep === 1 && (
+                  <div className="space-x-1">
+                    <span className="text-xs font-sans italic md:text-sm text-gray-400 mt-2">
+                      Forgot your password?
+                    </span>
+                    <Link
+                      to="/reset-password"
+                      className="text-xs italic md:text-sm text-gray-400 underline cursor-pointer mt-2 font-sans"
+                    >
+                      Reset it.
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

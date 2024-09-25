@@ -116,7 +116,7 @@ export const SignUpPage = () => {
   return (
     <div className="flex flex-row w-full justify-center items-center h-screen text-left bg-black text-white px-6 md:px-20">
       {showAnimation ? (
-        <AnimationComponent finalText="Signup successful!" />
+        <AnimationComponent finalText="Signup successful!" redirect="/home" />
       ) : (
         <div className="w-5/12 flex flex-col">
           <h1 className="text-3xl md:text-4xl mb-4">Let's get started.</h1>

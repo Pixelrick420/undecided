@@ -31,6 +31,7 @@ const AnimationComponent = ({ finalHeading, finalText, redirect }) => {
   useEffect(() => {
     if (animation2Finished) {
       const redirectTimeout = setTimeout(() => {
+        window.location.reload();
         navigate(redirect);
       }, 1000);
 

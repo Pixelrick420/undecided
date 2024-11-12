@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -9,6 +10,7 @@ export const RegisterPage = () => {
   const [generatedID, setGeneratedID] = useState("");
   const [elements, setElements] = useState([]);
   const [isEventValid, setIsEventValid] = useState(false);
+  const navigate = useNavigate();
 
   const steps = [
     "Enter your event code",
@@ -81,16 +83,20 @@ export const RegisterPage = () => {
     }
   };
 
+  const handleNavigateToEvent = () => {
+    navigate(`/events/${eventCode}`);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-black text-white px-6 md:px-20">
-      <div className="w-6/12">
-        <h1 className="text-3xl md:text-4xl mb-4">
+      <div className="w-5/12 flex flex-col items-start">
+        <h1 className="text-4xl text-left mb-4">
           {currentStep === 0 ? "Let's get going!" : "Accessing Event Form"}
         </h1>
 
         {currentStep === 0 ? (
           <>
-            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
+            <h2 className="text-lg opacity-75 font-sans mb-6">
               {steps[currentStep]}
             </h2>
             <input
@@ -98,44 +104,55 @@ export const RegisterPage = () => {
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className="gradient mb-2 w-1/2"
+              className="bg-gray-100 text-black p-3 rounded-md w-full mb-4"
+              placeholder="Enter your event code"
               autoFocus
             />
           </>
         ) : isEventValid ? (
-          <div>
-            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
+          <div className="w-full">
+            <h2 className="text-lg opacity-75 font-sans mb-6">
               Fill out the event form
             </h2>
             {elements.map((element) => (
               <div
                 key={element.id}
-                className={`mb-4 p-4 rounded-md ${getElementClass(
+                className={`p-4 rounded-md mb-4 ${getElementClass(
                   element.type
                 )}`}>
-                <label className="text-lg">{element.value}</label>
+                <label className="text-lg font-semibold">{element.value}</label>
                 {element.type === "text" && (
                   <input
                     type="text"
-                    className="p-2 w-full bg-gray-100 rounded-md mt-2"
+                    className="mt-2 w-full p-2 rounded-md bg-gray-100 text-black"
                   />
                 )}
                 {element.type === "checkbox" && (
                   <div className="flex flex-col mt-2">
                     {element.options.map((option, idx) => (
-                      <label key={idx} className="flex items-center space-x-2">
-                        <input type="checkbox" className="form-checkbox" />
-                        <span>{option}</span>
+                      <label
+                        key={idx}
+                        className="flex items-center space-x-2 mb-2">
+                        <input
+                          type="radio"
+                          name={`checkbox-group-${element.id}`} // ensures only one selection per group
+                          className="form-radio text-black"
+                        />
+                        <span className="text-base">{option}</span>
                       </label>
                     ))}
                   </div>
                 )}
-                {/* Add other form types as needed */}
               </div>
             ))}
+            <button
+              onClick={handleNavigateToEvent}
+              className="bg-blue-600 text-white px-6 py-2 rounded-md absolute bottom-8 right-8 hover:bg-blue-500 transition duration-200">
+              Next
+            </button>
           </div>
         ) : (
-          <p className="text-red-500">Invalid event code.</p>
+          <p className="text-red-500 text-lg">Invalid event code.</p>
         )}
       </div>
     </div>

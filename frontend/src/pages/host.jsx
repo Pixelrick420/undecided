@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
   const [selectedElement, setSelectedElement] = useState("text");
@@ -18,8 +19,6 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
 
   const handleSelectChange = (e) => {
     setSelectedElement(e.target.value);
-    setInputValue("");
-    setCheckboxOptions("");
   };
 
   const handleAddElement = () => {
@@ -71,7 +70,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
         elements: elements,
       });
       console.log("Event Created with elements:", elements);
-      setCurrentQuestion(2);
+      setCurrentQuestion(3); // move to next question after creation
     } catch (error) {
       console.error("Error creating event:", error);
     }
@@ -126,7 +125,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           />
 
           <select
-            className="p-2 bg-gray-200 text-black  rounded-md w-36 ml-5"
+            className="p-2 bg-gray-200 text-black rounded-md w-36 ml-5"
             value={selectedElement}
             onChange={handleSelectChange}>
             <option value="" disabled></option>
@@ -179,9 +178,9 @@ const generateUniqueID = () => {
 const EVENTID = generateUniqueID() + "-" + generateUniqueID();
 
 export const HostPage = () => {
-  var errorraised = false;
   const questions = [
     "What's your event called?",
+    "Provide a brief description of your event",
     "Set up your registration form",
     "Here is your event code, please share it with all your participants!",
   ];
@@ -189,6 +188,8 @@ export const HostPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [elements, setElements] = useState([]);
+  const [eventName, setEventName] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
 
   const handleInputChange = (e) => setInputValue(e.target.value);
 
@@ -204,6 +205,9 @@ export const HostPage = () => {
 
   const handleNextQuestion = () => {
     if (inputValue.trim() !== "" || currentQuestion === 0) {
+      if (currentQuestion === 0) setEventName(inputValue);
+      else if (currentQuestion === 1) setEventDescription(inputValue);
+
       setInputValue("");
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
@@ -220,10 +224,10 @@ export const HostPage = () => {
 
   return (
     <div className="flex flex-row w-full justify-center items-center h-screen text-left bg-black text-white px-6 md:px-20">
-      {currentQuestion !== 1 ? (
+      {currentQuestion !== 2 ? (
         <div className="w-6/12 flex flex-col">
           <h1 className="text-3xl md:text-4xl mb-4">
-            {currentQuestion !== 2
+            {currentQuestion !== 3
               ? "Let's set up your Event."
               : "Generating your Unique ID"}
           </h1>
@@ -232,13 +236,13 @@ export const HostPage = () => {
             {questions[currentQuestion]}
           </h2>
 
-          {currentQuestion !== 2 ? (
+          {currentQuestion !== 3 ? (
             <input
               type="text"
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className={!errorraised ? "gradient" : "errorgradient"}
+              className="gradient"
               autoFocus
             />
           ) : (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase";
-import { useNavigate } from "react-router-dom";
+import { HomeComponent } from "./home";
 
 const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
   const [selectedElement, setSelectedElement] = useState("text");
@@ -17,9 +17,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
     { value: "other", label: "*other type*" },
   ];
 
-  const handleSelectChange = (e) => {
-    setSelectedElement(e.target.value);
-  };
+  const handleSelectChange = (e) => setSelectedElement(e.target.value);
 
   const handleAddElement = () => {
     if (selectedElement && inputValue.trim()) {
@@ -69,8 +67,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
         id: EVENTID,
         elements: elements,
       });
-      console.log("Event Created with elements:", elements);
-      setCurrentQuestion(3); // move to next question after creation
+      setCurrentQuestion(3);
     } catch (error) {
       console.error("Error creating event:", error);
     }
@@ -152,12 +149,12 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
 
       <div className="mt-6 absolute bottom-6 right-6 flex space-x-4">
         <button
-          className="bg-white text-black py-2 px-4 rounded-md"
+          className="bg-black text-white py-2 px-4 rounded-full border-white border-2"
           onClick={handleAddElement}>
           Add Element
         </button>
         <button
-          className="bg-white text-black py-2 px-4 rounded-md"
+          className="bg-white text-black py-2 px-4  rounded-full"
           onClick={handleCreateEvent}>
           Create Event
         </button>
@@ -190,11 +187,14 @@ export const HostPage = () => {
   const [elements, setElements] = useState([]);
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+  const [showHome, setShowHome] = useState(false);
 
   const handleInputChange = (e) => setInputValue(e.target.value);
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
+    if (currentQuestion === 3) {
+      setShowHome(true);
+    } else if (e.key === "Enter" && inputValue.trim() !== "") {
       handleNextQuestion();
     } else if (e.key === "ArrowRight") {
       handleNextQuestion();
@@ -222,6 +222,14 @@ export const HostPage = () => {
     }
   };
 
+  const handleArrowClick = () => {
+    setShowHome(true);
+  };
+
+  if (showHome) {
+    return <HomeComponent />;
+  }
+
   return (
     <div className="flex flex-row w-full justify-center items-center h-screen text-left bg-black text-white px-6 md:px-20">
       {currentQuestion !== 2 ? (
@@ -236,17 +244,45 @@ export const HostPage = () => {
             {questions[currentQuestion]}
           </h2>
 
-          {currentQuestion !== 3 ? (
+          {currentQuestion !== 3 && (
             <input
               type="text"
+              className="p-2 rounded-md w-full text-black bg-gray-100"
+              placeholder={
+                currentQuestion === 0
+                  ? "Enter event name"
+                  : "Enter event description"
+              }
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className="gradient"
-              autoFocus
             />
-          ) : (
-            <div className="gradient">{EVENTID}</div>
+          )}
+
+          {currentQuestion === 3 && (
+            <div>
+              <div className="gradient">{EVENTID}</div>
+
+              <div className="mt-6 absolute bottom-6 right-6 flex space-x-4">
+                <button
+                  className="bg-black text-white py-2 px-4 rounded-full flex items-center "
+                  onClick={handleArrowClick}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-12 w-16"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="3">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           )}
         </div>
       ) : (

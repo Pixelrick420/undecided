@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import { useNavigate } from "react-router-dom";
 
-export const HomeComponent = ({ onRegister, onHost, onView }) => {
+export const HomeComponent = () => {
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -32,26 +34,28 @@ export const HomeComponent = ({ onRegister, onHost, onView }) => {
 
         <div className="grid grid-cols-2 gap-4">
           <button
-            onClick={onRegister}
+            onClick={() => navigate("/register")}
             className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
             <div>Register</div>
             <div className="text-pink-400 mr-2">•</div>
           </button>
 
           <button
-            onClick={onHost}
+            onClick={() => navigate("/host")}
             className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
             <div>Host</div>
             <div className="text-yellow-400 mr-2">•</div>
           </button>
 
-          <button className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
+          <button
+            onClick={() => navigate("/check")}
+            className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
             <div>Check</div>
             <div className="text-purple-400 mr-2">•</div>
           </button>
 
           <button
-            onClick={onView}
+            onClick={() => navigate("/view")}
             className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
             <div>View</div>
             <div className="text-orange-400 mr-2">•</div>

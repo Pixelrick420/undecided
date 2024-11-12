@@ -89,7 +89,7 @@ export const RegisterPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-black text-white px-6 md:px-20">
-      <div className="w-5/12 flex flex-col items-start">
+      <div className="w-6/12 flex flex-col items-start">
         <h1 className="text-4xl text-left mb-4">
           {currentStep === 0 ? "Let's get going!" : "Accessing Event Form"}
         </h1>
@@ -104,8 +104,7 @@ export const RegisterPage = () => {
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className="bg-gray-100 text-black p-3 rounded-md w-full mb-4"
-              placeholder="Enter your event code"
+              className="gradient"
               autoFocus
             />
           </>

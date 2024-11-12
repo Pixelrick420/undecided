@@ -9,6 +9,7 @@ import AnimationComponent from "./pages/AnimationComponent.jsx";
 import { Link } from "react-router-dom";
 import { HostPage } from "./pages/host.jsx";
 import ViewPage from "./pages/viewPage.jsx";
+import { HomeComponent } from "./pages/home.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/a" element={<AnimationComponent />} />
         <Route path="/view" element={<ViewPage />} />
+        <Route path="/home" element={<HomeComponent />} />
       </Routes>
     </div>
   );

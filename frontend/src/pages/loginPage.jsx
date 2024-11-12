@@ -5,7 +5,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import AnimationComponent from "./AnimationComponent";
 import { useNavigate } from "react-router-dom";
-
+import { HomeComponent } from "./home";
 export const LoginPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [inputValue, setInputValue] = useState("");
@@ -115,8 +115,8 @@ export const LoginPage = () => {
       {showAnimation ? (
         <AnimationComponent
           finalHeading="Logged In!"
-          finalText="Lets get back into action"
-          redirect={"/home"}
+          finalText="Let's get back into action"
+          FinalComponent={HomeComponent}
         />
       ) : (
         <div className="w-5/12 flex flex-col">

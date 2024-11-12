@@ -4,7 +4,6 @@ import { LoginPage } from "./pages/loginPage.jsx";
 import { SignUpPage } from "./pages/signUpPage.jsx";
 import { ResetPasswordPage } from "./pages/resetPasswordPage.jsx";
 import { RegisterPage } from "./pages/registrationPage.jsx";
-import { HomePage } from "./pages/home.jsx";
 import "./index.css";
 import AnimationComponent from "./pages/AnimationComponent.jsx";
 import { Link } from "react-router-dom";
@@ -19,7 +18,6 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/host" element={<HostPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/home" element={<HomePage />} />
         <Route path="/a" element={<AnimationComponent />} />
         <Route path="/view" element={<ViewPage />} />
       </Routes>

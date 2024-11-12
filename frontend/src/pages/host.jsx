@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "./firebase";
 
 const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
   const [selectedElement, setSelectedElement] = useState("text");
@@ -21,10 +24,21 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
 
   const handleAddElement = () => {
     if (selectedElement && inputValue.trim()) {
-      let newElement = { type: selectedElement, value: inputValue };
+      let newElement = {
+        id: uuidv4(),
+        type: selectedElement,
+        value: inputValue,
+      };
 
       if (selectedElement === "checkbox" && checkboxOptions.trim()) {
-        newElement.options = checkboxOptions.split(" "); // Split options by spaces
+        const optionsArray = checkboxOptions.split(" ").filter(Boolean);
+        const hasDuplicates =
+          new Set(optionsArray).size !== optionsArray.length;
+        if (hasDuplicates) {
+          alert("Please enter unique checkbox options.");
+          return;
+        }
+        newElement.options = optionsArray;
       }
 
       if (editingIndex !== null) {
@@ -50,9 +64,30 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
     setEditingIndex(index);
   };
 
-  const handleCreateEvent = () => {
-    console.log("Event Created with elements:", elements);
-    setCurrentQuestion(2);
+  const handleCreateEvent = async () => {
+    try {
+      await addDoc(collection(db, "events"), {
+        id: EVENTID,
+        elements: elements,
+      });
+      console.log("Event Created with elements:", elements);
+      setCurrentQuestion(2);
+    } catch (error) {
+      console.error("Error creating event:", error);
+    }
+  };
+
+  const getElementClass = (type) => {
+    switch (type) {
+      case "text":
+        return "bg-blue-600";
+      case "checkbox":
+        return "bg-green-600";
+      case "payment":
+        return "bg-yellow-500";
+      default:
+        return "bg-pink-600";
+    }
   };
 
   return (
@@ -65,18 +100,11 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
       <div className="w-full space-y-4">
         {elements.map((element, index) => (
           <div
-            key={index}
-            className={`p-4 rounded-md cursor-pointer ${
-              element.type === "text"
-                ? "bg-blue-600"
-                : element.type === "checkbox"
-                ? "bg-green-600"
-                : element.type === "payment"
-                ? "bg-yellow-500"
-                : "bg-pink-600"
-            }`}
-            onClick={() => handleEditElement(index)}
-          >
+            key={element.id}
+            className={`p-4 rounded-md cursor-pointer ${getElementClass(
+              element.type
+            )}`}
+            onClick={() => handleEditElement(index)}>
             <p>{element.value}</p>
             {element.type === "checkbox" && element.options && (
               <div className="ml-4">
@@ -91,17 +119,16 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
         <div className="flex justify-between w-full items-center">
           <input
             type="text"
-            className="input"
+            className="p-2 w-full rounded-md text-black bg-gray-100"
             placeholder={`Enter ${selectedElement} prompt`}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
 
           <select
-            className="p-2 bg-customLightGray text-white h-[55px] rounded-md w-1/12"
+            className="p-2 bg-gray-200 text-black  rounded-md w-36 ml-5"
             value={selectedElement}
-            onChange={handleSelectChange}
-          >
+            onChange={handleSelectChange}>
             <option value="" disabled></option>
             {elementOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -115,7 +142,7 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
           <div className="mt-4 w-full">
             <input
               type="text"
-              className="input"
+              className="p-2 w-full rounded-md text-black bg-gray-100"
               placeholder="Enter checkbox options separated by spaces"
               value={checkboxOptions}
               onChange={(e) => setCheckboxOptions(e.target.value)}
@@ -127,14 +154,12 @@ const RegistrationForm = ({ setElements, elements, setCurrentQuestion }) => {
       <div className="mt-6 absolute bottom-6 right-6 flex space-x-4">
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleAddElement}
-        >
+          onClick={handleAddElement}>
           Add Element
         </button>
         <button
           className="bg-white text-black py-2 px-4 rounded-md"
-          onClick={handleCreateEvent}
-        >
+          onClick={handleCreateEvent}>
           Create Event
         </button>
       </div>
@@ -154,7 +179,7 @@ const generateUniqueID = () => {
 const EVENTID = generateUniqueID() + "-" + generateUniqueID();
 
 export const HostPage = () => {
-  var errorraised = false; // set this to true if any error like password does not match etc
+  var errorraised = false;
   const questions = [
     "What's your event called?",
     "Set up your registration form",
@@ -217,7 +242,7 @@ export const HostPage = () => {
               autoFocus
             />
           ) : (
-            <div class="gradient">{EVENTID}</div>
+            <div className="gradient">{EVENTID}</div>
           )}
         </div>
       ) : (

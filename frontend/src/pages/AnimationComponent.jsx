@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./tick.css";
 
-const AnimationComponent = ({ finalHeading, finalText, redirect }) => {
+const AnimationComponent = ({ finalHeading, finalText, FinalComponent }) => {
   const [firstAnimationCount, setFirstAnimationCount] = useState(0);
   const [animation1Finished, setAnimation1Finished] = useState(false);
   const [animation2Finished, setAnimation2Finished] = useState(false);
-  const navigate = useNavigate();
+  const [showFinalComponent, setShowFinalComponent] = useState(false);
 
   useEffect(() => {
     if (firstAnimationCount < 3) {
@@ -31,13 +30,16 @@ const AnimationComponent = ({ finalHeading, finalText, redirect }) => {
   useEffect(() => {
     if (animation2Finished) {
       const redirectTimeout = setTimeout(() => {
-        window.location.reload();
-        navigate(redirect);
+        setShowFinalComponent(true);
       }, 1000);
 
       return () => clearTimeout(redirectTimeout);
     }
-  }, [animation2Finished, navigate, redirect]);
+  }, [animation2Finished]);
+
+  if (showFinalComponent) {
+    return <FinalComponent />;
+  }
 
   return (
     <div className="flex justify-center items-center w-full h-screen">

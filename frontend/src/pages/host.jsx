@@ -91,7 +91,7 @@ export const HostPage = () => {
           {currentQuestion !== 3 && (
             <input
               type="text"
-              className="p-2 rounded-md w-full text-black bg-gray-100"
+              className="p-2 rounded-md w-full text-black bg-gray-100 gradient"
               placeholder={
                 currentQuestion === 0
                   ? "Enter event name"
@@ -279,22 +279,24 @@ const RegistrationForm = ({
           </div>
         ))}
 
-        <div className="flex justify-between w-full items-center">
+        <div className="flex justify-between w-full items-center ">
           <input
             type="text"
-            className="p-2 w-full rounded-md text-black bg-gray-100"
+            className="p-2 w-full rounded-md text-black gradient"
             placeholder={`Enter ${selectedElement} prompt`}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
 
           <select
-            className="p-2 bg-gray-200 text-black rounded-md w-36 ml-5"
+            className="p-2 rounded-md w-36 ml-5 text-black gradient"
             value={selectedElement}
             onChange={handleSelectChange}>
-            <option value="" disabled></option>
             {elementOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                className="bg-gray-700 text-white ">
                 {option.label}
               </option>
             ))}
@@ -305,7 +307,7 @@ const RegistrationForm = ({
           <div className="mt-4 w-full">
             <input
               type="text"
-              className="p-2 w-full rounded-md text-black bg-gray-100"
+              className="p-2 w-full rounded-md text-black gradient "
               placeholder="Enter checkbox options separated by spaces"
               value={checkboxOptions}
               onChange={(e) => setCheckboxOptions(e.target.value)}

@@ -1,72 +1,41 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./tick.css";
 
-const AnimationComponent = ({ finalHeading, finalText, FinalComponent }) => {
-  const [firstAnimationCount, setFirstAnimationCount] = useState(0);
-  const [animation1Finished, setAnimation1Finished] = useState(false);
-  const [animation2Finished, setAnimation2Finished] = useState(false);
-  const [showFinalComponent, setShowFinalComponent] = useState(false);
+const AnimationComponent = ({ finalHeading, finalText, redirect }) => {
+  const [animationStage, setAnimationStage] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (firstAnimationCount < 3) {
-      const interval = setInterval(() => {
-        setFirstAnimationCount((prevCount) => prevCount + 1);
-      }, 1000);
+    const timeouts = [
+      setTimeout(() => setAnimationStage(1), 3000),
+      setTimeout(() => setAnimationStage(2), 4000),
+      setTimeout(() => navigate(redirect), 5000),
+    ];
 
-      return () => clearInterval(interval);
-    } else {
-      setAnimation1Finished(true);
-    }
-  }, [firstAnimationCount]);
-
-  useEffect(() => {
-    if (animation1Finished) {
-      const timeout = setTimeout(() => {
-        setAnimation2Finished(true);
-      }, 1000); 
-
-      return () => clearTimeout(timeout);
-    }
-  }, [animation1Finished]);
-
-  useEffect(() => {
-    if (animation2Finished) {
-      const timeout = setTimeout(() => {
-        setShowFinalComponent(true); 
-      }, 1000); 
-
-      return () => clearTimeout(timeout);
-    }
-  }, [animation2Finished]);
-
-  if (showFinalComponent) {
-    return <FinalComponent />;
-  }
+    return () => timeouts.forEach((timeout) => clearTimeout(timeout));
+  }, [navigate, redirect]);
 
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      <header className="header"></header>
+    <div className="flex justify-center items-center w-full h-screen bg-black">
       <main className="flex flex-wrap justify-center items-center gap-8 text-4xl font-sans">
-        {/* First Animation (Loading) */}
-        {!animation1Finished && (
+        {animationStage === 0 && (
           <div className="flex space-x-2 justify-center items-center bg-white h-screen dark:invert">
-            <span className="sr-only">Loading...</span>
-            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-            <div className="h-8 w-8 bg-black rounded-full animate-bounce"></div>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-duration:1s]"></div>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.3s]"></div>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.6s]"></div>
           </div>
         )}
 
-        {animation1Finished && !animation2Finished && (
+        {animationStage === 1 && (
           <div className="relative flex justify-center items-center w-12 h-12 text-white">
             <div className="absolute w-12 h-12 rounded-full bg-white animate-loader-expand"></div>
-            <div className="absolute w-12 h-12 rounded-full bg-white opacity-0 animate-loader-explode"></div>
-            <div className="tick absolute h-5 w-2.5 inline-block transform rotate-45 border-b-4 border-r-4 border-black"></div>
+            <div className="absolute tick h-5 w-2.5 inline-block transform rotate-45 border-b-4 border-r-4 border-black"></div>
           </div>
         )}
 
-        {animation2Finished && (
-          <div className="w-5/9 flex flex-col">
+        {animationStage === 2 && (
+          <div className="w-5/9 flex flex-col text-center">
             <h1 className="text-3xl md:text-4xl mb-4">{finalHeading}</h1>
             <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               {finalText}

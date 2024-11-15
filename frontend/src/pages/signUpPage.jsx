@@ -75,7 +75,6 @@ export const SignUpPage = () => {
       );
       const user = userCredential.user;
       setError("");
-
       await setDoc(doc(db, "users", user.uid), {
         name,
         email,

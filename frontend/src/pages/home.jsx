@@ -48,7 +48,7 @@ export const HomeComponent = () => {
           </button>
 
           <button
-            onClick={() => navigate("/check")}
+            onClick={() => navigate(`/events/Q20G-ZE55/participants`)}
             className="flex flex-row text-xl justify-between gap-x-[14vh] bg-zinc-900 border-solid border-[1px] border-zinc-600 hover:bg-gray-700 items-center px-3 py-2 text-white text-md font-serif">
             <div>Check</div>
             <div className="text-purple-400 mr-2">•</div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { LoginPage } from "./loginPage";
 import { SignUpPage } from "./signUpPage";
 import { RegisterPage } from "./registrationPage";
@@ -8,7 +7,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AnimationComponent from "./AnimationComponent";
 
 export const WelcomePage = () => {
-  const navigate = useNavigate();
   const customGray = "#252525";
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
@@ -30,6 +28,41 @@ export const WelcomePage = () => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const storedPage = localStorage.getItem("viewPage");
+
+    if (!storedPage) {
+      setViewLogin(false);
+      setViewSignup(false);
+      setViewHost(false);
+      setViewJoin(false);
+    } else {
+      if (storedPage === "login") {
+        setViewLogin(true);
+      } else if (storedPage === "signup") {
+        setViewSignup(true);
+      } else if (storedPage === "host") {
+        setViewHost(true);
+      } else if (storedPage === "join") {
+        setViewJoin(true);
+      }
+    }
+
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("viewPage");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  const savePageState = (page) => {
+    localStorage.setItem("viewPage", page);
+  };
 
   if (viewLogin) {
     return <LoginPage />;
@@ -94,10 +127,10 @@ export const WelcomePage = () => {
               }}
               onClick={() => {
                 setViewLogin(true);
+                savePageState("login");
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
-            >
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Login
             </button>
             <button
@@ -113,9 +146,9 @@ export const WelcomePage = () => {
               }}
               onClick={() => {
                 setViewSignup(true);
+                savePageState("signup");
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
-            >
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
               SignUp
             </button>
           </>
@@ -130,10 +163,10 @@ export const WelcomePage = () => {
               }}
               onClick={() => {
                 setViewHost(true);
+                savePageState("host");
               }}
               style={buttonStyle}
-              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif"
-            >
+              className="mx-4 text-1.5xl h-10 w-36 border-2 border-black rounded-md font-serif">
               Host
             </button>
             <button
@@ -149,9 +182,9 @@ export const WelcomePage = () => {
               }}
               onClick={() => {
                 setViewJoin(true);
+                savePageState("join");
               }}
-              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif"
-            >
+              className="mx-4 text-1.5xl h-10 w-36 bg-black border-2 rounded-md font-serif">
               Join
             </button>
           </>

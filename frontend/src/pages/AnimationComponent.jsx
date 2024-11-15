@@ -21,19 +21,21 @@ const AnimationComponent = ({ finalHeading, finalText, FinalComponent }) => {
 
   useEffect(() => {
     if (animation1Finished) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setAnimation2Finished(true);
-      }, 1000);
+      }, 1000); 
+
+      return () => clearTimeout(timeout);
     }
   }, [animation1Finished]);
 
   useEffect(() => {
     if (animation2Finished) {
-      const redirectTimeout = setTimeout(() => {
-        setShowFinalComponent(true);
-      }, 1000);
+      const timeout = setTimeout(() => {
+        setShowFinalComponent(true); 
+      }, 1000); 
 
-      return () => clearTimeout(redirectTimeout);
+      return () => clearTimeout(timeout);
     }
   }, [animation2Finished]);
 
@@ -45,6 +47,7 @@ const AnimationComponent = ({ finalHeading, finalText, FinalComponent }) => {
     <div className="flex justify-center items-center w-full h-screen">
       <header className="header"></header>
       <main className="flex flex-wrap justify-center items-center gap-8 text-4xl font-sans">
+        {/* First Animation (Loading) */}
         {!animation1Finished && (
           <div className="flex space-x-2 justify-center items-center bg-white h-screen dark:invert">
             <span className="sr-only">Loading...</span>
@@ -65,7 +68,6 @@ const AnimationComponent = ({ finalHeading, finalText, FinalComponent }) => {
         {animation2Finished && (
           <div className="w-5/9 flex flex-col">
             <h1 className="text-3xl md:text-4xl mb-4">{finalHeading}</h1>
-
             <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               {finalText}
             </h2>

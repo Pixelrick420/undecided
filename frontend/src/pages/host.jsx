@@ -285,6 +285,7 @@ const RegistrationForm = ({
             className="gradient w-full p-2 rounded-md"
             placeholder={`Enter ${selectedElement} prompt`}
             value={inputValue}
+            autoFocus
             onChange={(e) => setInputValue(e.target.value)}
           />
 

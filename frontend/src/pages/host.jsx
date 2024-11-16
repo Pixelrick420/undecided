@@ -282,7 +282,7 @@ const RegistrationForm = ({
         <div className="flex justify-between w-full items-center ">
           <input
             type="text"
-            className="p-2 w-full rounded-md text-black gradient"
+            className="gradient w-full p-2 rounded-md"
             placeholder={`Enter ${selectedElement} prompt`}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}

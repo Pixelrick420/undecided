@@ -161,30 +161,28 @@ export const RegisterPage = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-black text-white px-6 md:px-20">
       <div className="w-full md:w-6/12 flex flex-col items-start">
-        <h1 className="text-4xl text-left mb-4">
+        <h1 className="text-3xl md:text-4xl text-left mb-4">
           {currentStep === 0 ? "Let's get going!" : "Accessing Event Form"}
         </h1>
         {currentStep === 0 ? (
           <>
-            <label
-              htmlFor="eventCodeInput"
-              className="text-lg opacity-75 font-sans mb-6">
+            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               {steps[currentStep]}
-            </label>
+            </h2>
             <input
               id="eventCodeInput"
               type="text"
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className="gradient w-full p-2 rounded-md text-black"
+              className="gradient w-full p-2 rounded-md bg-gray-100 text-black"
               autoFocus
               aria-label="Event Code"
             />
           </>
         ) : isEventValid ? (
           <div className="w-full">
-            <h2 className="text-lg opacity-75 font-sans mb-6">
+            <h2 className="text-sm md:text-base font-sans italic opacity-75 mb-6">
               Fill out the event form
             </h2>
             {elements.length > 0 ? (

@@ -254,7 +254,7 @@ const RegistrationForm = ({
   };
 
   return (
-    <div className="flex flex-col w-5/12 items-start justify-center min-h-screen bg-black text-white">
+    <div className="flex flex-col w-6/12 items-start justify-center min-h-screen bg-black text-white">
       <h1 className="text-4xl text-left mb-4">Let’s set up your Event.</h1>
       <p className="text-lg opacity-75 font-sans mb-6">
         Set up your registration form.
@@ -289,7 +289,7 @@ const RegistrationForm = ({
           />
 
           <select
-            className="p-2 rounded-md w-36 ml-5 text-black gradient"
+            className="p-2 rounded-md ml-5 text-black gradient"
             value={selectedElement}
             onChange={handleSelectChange}>
             {elementOptions.map((option) => (
